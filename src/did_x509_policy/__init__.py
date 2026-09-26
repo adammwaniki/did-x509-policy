@@ -46,4 +46,4 @@ __all__ = [
 ]
 
 #: Kept in step with the image tag the workflow publishes.
-__version__ = "1.0.0"
+__version__ = "1.0.1"

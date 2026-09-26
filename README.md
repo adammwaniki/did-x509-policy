@@ -253,7 +253,7 @@ a replayed OCSP nonce.
 
 ## Versioning
 
-Published to GHCR on every tag matching `did-x509-policy-v*`:
+Published to GHCR on every tag matching `v*`:
 
 ```
 ghcr.io/adammwaniki/did-x509-policy:1.0.0
@@ -283,27 +283,11 @@ Worth knowing before you adopt it.
 ## Where this came from
 
 Extracted from a working demonstration of national PKI inside `did:web`, which records the whole
-argument on video: [pki-in-did](https://github.com/adammwaniki/pki-in-did). Read that if you want
-to see the problem before the solution.
+argument on video and runs this package against three production walt.id services:
+**[pki-in-did](https://github.com/adammwaniki/pki-in-did)**. Read that if you want to see the
+problem before the solution — particularly part 5, which is the 24 seconds this library exists for.
 
-It still lives in that repository as a subdirectory, which has one visible consequence: GitHub
-Packages renders the *repository's* root README on the package page, not this file. There is no
-setting for that. Giving the package its own repository fixes it, and `git subtree split` moves it
-with its history intact:
-
-```bash
-# in the pki-in-did checkout
-git subtree split --prefix=did-x509-policy -b did-x509-policy-only
-
-# then, with an empty github.com/<owner>/did-x509-policy created
-git push git@github.com:<owner>/did-x509-policy.git did-x509-policy-only:main
-```
-
-Two things change in the new repository: `.github/workflows/did-x509-policy.yml` loses its
-`working-directory`, `paths` filter and `context: did-x509-policy`, and the release tag becomes
-`v1.0.0` rather than `did-x509-policy-v1.0.0`. The image name is unchanged — GHCR names a package
-by owner, not by repository — so anything already pinned to
-`ghcr.io/<owner>/did-x509-policy:1.0.0` keeps working.
+That demonstration installs this package rather than keeping a copy, so the two cannot drift.
 
 ## Licence
 

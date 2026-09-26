@@ -17,7 +17,7 @@ FROM python:3.12-slim AS runtime
 
 LABEL org.opencontainers.image.title="did-x509-policy" \
       org.opencontainers.image.description="Validate the x5c chain behind a did:web verification method against your own trust anchors, online or offline." \
-      org.opencontainers.image.source="https://github.com/adammwaniki/pki-in-did" \
+      org.opencontainers.image.source="https://github.com/adammwaniki/did-x509-policy" \
       org.opencontainers.image.licenses="Apache-2.0"
 
 RUN apt-get update \
