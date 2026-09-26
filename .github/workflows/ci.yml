@@ -142,12 +142,18 @@ jobs:
         with:
           images: ${{ env.IMAGE }}
           # v1.2.3 publishes :1.2.3, :1.2 and :latest. No bare major tag: a verifier is not
-          # something to float across major versions by accident.
+          # something to float across major versions by accident. `latest` comes from
+          # metadata-action's default latest=auto, which correctly skips prereleases -- an
+          # explicit raw tag here would have tagged v1.1.0-rc1 as latest too.
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
-            type=raw,value=latest
+          # Set explicitly because metadata-action otherwise takes the description from the
+          # GitHub repository description, which was empty and left the manifest annotation blank.
           labels: |
+            org.opencontainers.image.title=did-x509-policy
+            org.opencontainers.image.description=The PKI policy layer a conformant DID verifier leaves to you.
+          annotations: |
             org.opencontainers.image.title=did-x509-policy
             org.opencontainers.image.description=The PKI policy layer a conformant DID verifier leaves to you.
 
